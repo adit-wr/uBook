@@ -6,6 +6,37 @@ class AuthController extends BaseController{
     {
         $this->authModel = $this->model('AuthModel');
     }
+
+    public function index() {
+        $data = [
+            'style' => '/css/style.css',
+            'title' => 'E-Library'
+        ];
+        $this->view('sign/template/header', $data);
+        $this->view('sign/landingpage/index', $data);
+        $this->view('sign/template/footer');
+    }
+
+    public function log() {
+        $data = [
+            'style' => '/css/style.css',
+            'title' => 'Login'
+        ];
+        $this->view('sign/template/header', $data);
+        $this->view('sign/signin/index', $data);
+        $this->view('sign/template/footer');
+    }
+
+    public function reg() {
+        $data = [
+            'style' => '/css/style.css',
+            'title' => 'Register'
+        ];
+        $this->view('sign/template/header', $data);
+        $this->view('sign/signup/index', $data);
+        $this->view('sign/template/footer');
+    }
+
     public function register() {
         $fields = [
             'name' => 'string | required',
@@ -58,8 +89,9 @@ class AuthController extends BaseController{
                 if (password_verify($password, $user['password'])) {
                     $_SESSION['id'] = $user['id'];
                     $_SESSION['name'] = $user['name'];
+                    $_SESSION['username'] = $user['username'];
                     $_SESSION['role'] = $user['role'];
-                    Message::setFlash('success', 'Welcome, ' . $user['name'], 'You are ' . $user['role'] );
+                    Message::setFlash('success', 'Welcome, ' . $_SESSION['name'], 'You are ' . $user['role'] );
 
                     setcookie('role', $user['role'], time() + 86400, '/');
 
@@ -89,6 +121,7 @@ class AuthController extends BaseController{
     public function logout() {
         unset($_SESSION['id']);
         unset($_SESSION['name']);
+        unset($_SESSION['username']);
         unset($_SESSION['role']);
         // session_unset();
         // session_destroy();

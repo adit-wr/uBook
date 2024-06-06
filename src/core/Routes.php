@@ -3,13 +3,13 @@
 class Routes {
     public function run(){
         $router = new App();
-        $router->setDefaultController('SignController');
+        $router->setDefaultController('AuthController');
         $router->setDefaultMethod('index');
 
         // sign
-        $router->get('/landingpage', ['SignController','index']);
-        $router->get('/signin', ['SignController','login']);
-        $router->get('/signup', ['SignController','register']);
+        $router->get('/landingpage', ['AuthController','index']);
+        $router->get('/signin', ['AuthController','log']);
+        $router->get('/signup', ['AuthController','reg']);
         $router->get('/signinproccess', ['AuthController','saveLogin']);
         $router->get('/logout', ['AuthController','logout']);
         $router->post('/signinproccess', ['AuthController','saveLogin']);
@@ -27,6 +27,7 @@ class Routes {
         $router->get('/admin/librarian', ['LibrarianController','index']);
         $router->get('/admin/librarianinsert', ['LibrarianController','insert']);
         $router->get('/admin/librarianedit', ['LibrarianController','edit']);
+        $router->get('/admin/history', ['HistoryController','index']);
         $router->post('/admin/librarianinsertproccess', ['LibrarianController','insert_account']);
         $router->post('/admin/librarianeditproccess', ['LibrarianController','edit_account']);
         $router->post('/admin/customerinsertproccess', ['CustomerController','insert_account']);
@@ -43,6 +44,7 @@ class Routes {
         $router->get('/librarian/customer', ['CustomerController', 'indexL']);
         $router->get('/librarian/customerinsert', ['CustomerController', 'insertL']);
         $router->get('/librarian/customeredit', ['CustomerController', 'editL']);
+        $router->get('/librarian/history', ['HistoryController','indexl']);
         $router->post('/librarian/customerinsertproccess', ['CustomerController','insert_accountL']);
         $router->post('/librarian/customereditproccess', ['CustomerController','edit_accountL']);
         $router->post('/librarian/bookinsertproccess', ['BookController','insert_bookL']);
@@ -52,8 +54,9 @@ class Routes {
         $router->get('/customer', ['DashboardController', 'indexC']);
         $router->get('/customer/dashboard', ['DashboardController', 'indexC']);
         $router->get('/customer/book', ['BookController', 'indexC']);
-
-
+        $router->get('/customer/history', ['HistoryController','indexC']);
+        $router->get('/customer/buybook', ['BookController', 'buybook']);
+        $router->post('/customer/buybookproccess', ['BookController', 'buybookproccess']);
 
         $router->run();
     }

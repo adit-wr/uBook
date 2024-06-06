@@ -9,6 +9,7 @@ Message::flash();
                         <tr>
                             <th>No</th>
                             <th>Book Name</th>
+                            <th>Publisher</th>
                             <th>Stock</th>
                             <th>Price</th>
                             <th>Image</th>
@@ -27,6 +28,7 @@ Message::flash();
                         <tr>
                             <td><?= $no++ ?></td>
                             <td class="tdname"><?= $row['name'] ?></td>
+                            <td class="tdname"><?= $row['publisher'] ?></td>
                             <td><?= $row['stock'] ?></td>
                             <td><?= $row['price'] ?></td>
                             <td>

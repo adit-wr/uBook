@@ -1,7 +1,8 @@
 <?php
 $data = Message::getData();
 if($data) {
-    $book['name_book'] = $data['name_book'];
+    $book['name'] = $data['name'];
+    $book['publisher'] = $data['publisher'];
     $book['stock'] = $data['stock'];
     $book['price'] = $data['price'];
     $book['image'] = $data['image'];
@@ -9,13 +10,17 @@ if($data) {
 Message::flash();
 ?>
         <div class="main">
-            <form id="form" action="<?= BASEURL . '/admin/bookeditproccess' ?>" method="post">
-                <input type="hidden" name="id" value="<?= $account['id_book'] ?>">
+            <form id="form" action="<?= BASEURL . '/admin/bookeditproccess' ?>" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="<?= $book['id_book'] ?>">
                 <input type="hidden" name="mode" id="mode" value="update">
                 <h1>Edit Book</h1>
                 <div class="forminput">
-                    <label for="bookname">Name</label>
-                    <input type="text" id="bookname" name="bookname" placeholder="Enter name" autocomplete="off" value="<?= $book['name_book'] ?>">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter name" autocomplete="off" value="<?= $book['name'] ?>">
+                </div>
+                <div class="forminput">
+                    <label for="publisher">Publisher</label>
+                    <input type="text" id="publisher" name="publisher" placeholder="Enter publisher" autocomplete="off" value="<?= $book['publisher'] ?>">
                 </div>
                 <div class="forminput">
                     <label for="stock">Stock</label>
@@ -26,13 +31,13 @@ Message::flash();
                     <input type="text" id="price" name="price" placeholder="Enter price" autocomplete="off" value="<?= $book['price'] ?>">
                 </div>
                 <div class="forminputimg">
-                    <label for="image">Image</label>
-                    <input type="file" id="image" name="image" placeholder="asdasd" autocomplete="off">
+                    <label for="uploadFile">Image</label>
+                    <input type="file" id="uploadFile" name="uploadFile" autocomplete="off">
                 </div>
                 <div class="btnn">
                     <button onclick="location.href='<?= BASEURL . '/admin/book' ?>'" type="button" class="btnsi">Cancel</button>
                     <button class="btnsi" onclick="edit('delete')" type="button">Delete</button>
-                    <button class="btnsi" onclick="edit('update')" type="button">Edit</button>
+                    <button class="btnsi" name="updt" type="submit">Edit</button>
                 </div>
             </form>
         </div>

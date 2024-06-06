@@ -1,6 +1,3 @@
-<?php
-Message::flash();
-?>
         <div class="container1">
             <div class="main"> 
                 <h1>Book</h1>
@@ -9,13 +6,12 @@ Message::flash();
                         <tr>
                             <th>No</th>
                             <th>Book Name</th>
-                            <th>Publisher</th>
                             <th>Stock</th>
                             <th>Price</th>
                             <th>Image</th>
                             <th>
                                 <div class="tdbtn">
-                                    <button onclick="location.href='<?= BASEURL . '/librarian/bookinsert' ?>'" type="button" class="tadd"><span class="material-symbols-outlined">library_add</span>New Book</button>
+                                    <button onclick="location.href='<?= BASEURL . '/customer/cart' ?>'" type="button" class="tadd"><span class="material-symbols-outlined">shopping_cart</span>Cart</button>
                                 </div>
                             </th>
                         </tr>
@@ -28,14 +24,18 @@ Message::flash();
                         <tr>
                             <td><?= $no++ ?></td>
                             <td class="tdname"><?= $row['name'] ?></td>
-                            <td class="tdname"><?= $row['publisher'] ?></td>
                             <td><?= $row['stock'] ?></td>
                             <td><?= $row['price'] ?></td>
                             <td>
                                 <img src= "<?= BASEURL . '/public/img/book/' . $row['image'] ?>" alt="<?= $row['name'] ?>" width="60px" height="100px">    
                             </td>
-                            <td class="tdbtn">
-                                <button class="tupd" onclick="location.href='<?= BASEURL . '/librarian/bookedit/' . $row['id_book'] ?>' ">Edit<span class="material-symbols-outlined">edit</span></button>
+                            <td class="thbtn">
+                                <!-- <div class="tdorder">
+                                    <button class="btnmin minus-btn"><span class="material-symbols-outlined">remove</span></button>
+                                    <input type="text" class="quantity-input" value="0">
+                                    <button class="btnplus plus-btn"><span class="material-symbols-outlined">add</span></button>
+                                </div> -->
+                                <button class="tupd" onclick="location.href='<?= BASEURL . '/librarian/buybook/' . $row['id_book'] ?>' ">Add to cart<span class="material-symbols-outlined">edit</span></button>
                             </td>
                         </tr>
                         <?php

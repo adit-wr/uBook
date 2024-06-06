@@ -5,37 +5,63 @@ class BookModel extends Database{
     {
         parent::__construct();
     }
+
     public function getAll() {
         $query = "SELECT * FROM book";
         return $this->qry($query)->fetchAll();
     }
+
     public function getById($id) {
         $query = "SELECT * FROM book WHERE id_book = ?";
         return $this->qry($query, [$id])->fetch();
     }
-    public function insert($name, $stock, $price, $image) {
+
+    public function getByNamePublisher($name, $publisher) {
+        $query = "SELECT * FROM book WHERE name = ? AND publisher = ?";
+        return $this->qry($query, [$name, $publisher])->fetch();
+    }
+
+    public function getByNamePublisherId($name, $publisher, $id) {
+        $query = "SELECT * FROM book WHERE name = ? AND publisher = ? AND id_book != ?";
+        return $this->qry($query, [$name, $publisher, $id])->fetch();
+    }
+
+    public function getImageId($id) {
+        $query = "SELECT image FROM book WHERE id_book = ?";
+        return $this->qry($query, [$id])->fetchColumn();
+    }
+
+    public function insert($name, $publisher, $stock, $price, $image) {
         $query = "INSERT INTO book
-        (name, stock, price, image)
-        VALUES (?, ?, ?, ?)";
+        (name, publisher, stock, price, image)
+        VALUES (?, ?, ?, ?, ?)";
         return $this->qry($query, [
             $name,
+            $publisher,
             $stock,
             $price,
             $image
         ]);
     }
-    public function update($data) {
-        $query = "UPDATE book SET name = ?, stock = ?, price = ?, image = ? WHERE id_book = ?";
+    public function update($name, $publisher, $stock, $price, $image, $id) {
+        $query = "UPDATE book SET name = ?, publisher = ?, stock = ?, price = ?, image = ? WHERE id_book = ?";
         return $this->qry($query, [
-            $data['name'],
-            $data['stock'],
-            $data['price'],
-            $data['image'],
-            $data['id']
+            $name,
+            $publisher,
+            $stock,
+            $price,
+            $image,
+            $id
         ]);
     }
+
     public function delete($id) {
         $query = "DELETE FROM book WHERE id_book = ?";
+        return $this->qry($query, [$id]);
+    }
+
+    public function updateStock($id) {
+        $query = "UPDATE books SET stock = stock - 1 WHERE id = ?";
         return $this->qry($query, [$id]);
     }
 }
