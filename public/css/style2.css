@@ -419,6 +419,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
     padding: 20px;
     border-radius: 20px;
     cursor: pointer;
+    transition: ease-in-out 0.3s;
 }
 
 .showbook:hover{

@@ -42,7 +42,7 @@ Message::flash();
                                 <input type="hidden" name="mode" id="mode" value="update">
                                 <div class="buttonbotcart">
                                     <button class="tbuy" type="button" onclick="location.href='<?= BASEURL . '/customer/book' ?>' ">Cancel</button>
-                                    <button class="tbuy" name="cart" type="submit">Buy<span class="material-symbols-outlined">shopping_cart</span></button>
+                                    <button class="tbuy" name="cart" type="submit">Buy</button>
                                 </div>
                             </form>
                         </div>

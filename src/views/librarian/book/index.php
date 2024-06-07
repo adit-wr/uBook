@@ -10,6 +10,13 @@ Message::flash();
                 <div class="mainbook">
                     <?php
                         foreach($AllBook as $row):
+                            $stok = $row['stock'];
+                            if ($stok <= 0) {
+                                $stock = "Out of stock";
+                            } else {
+                                $stock = $stok . " left";
+                            }
+                            $stockcolor = $stok <= 10 ? 'color:red;' : '';
                     ?>
                         <div class="showbook">
                             <div class="imagebook">
@@ -20,7 +27,7 @@ Message::flash();
                                 </div>
                                 <div class="bottombook">
                                     <div class="pricee">
-                                        <h6><?= $row['stock'] ?></h6>
+                                    <h6 style="<?= $stockcolor ?>"><?= $stock ?></h6>
                                         <h5>Rp.<?= $row['price'] ?></h5>
                                     </div>
                                     <div class="btnbuystok">
