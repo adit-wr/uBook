@@ -209,6 +209,11 @@ tr:nth-child(even) {
 .tadd:active{
     opacity: 0.5;
 }
+.adbuk{
+    display: flex;
+    width: 200px;
+    padding-top: 20px;
+}
 .tview{
     display: flex;
     justify-content: center;
@@ -441,7 +446,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
 }
 
 .namebook h6{
-    font-weight: 400;
+    font-weight: 500;
 }
 .pricee{
     display: flex;

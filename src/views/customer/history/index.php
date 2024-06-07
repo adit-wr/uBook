@@ -1,4 +1,6 @@
-
+<?php
+Message::flash();
+?>
         <div class="container1">
             <div class="main"> 
                 <h1>History</h1>

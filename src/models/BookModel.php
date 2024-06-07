@@ -55,13 +55,18 @@ class BookModel extends Database{
         ]);
     }
 
+    public function getStock($id) {
+        $query = "SELECT stock FROM book WHERE id_book = ?";
+        return $this->qry($query, [$id])->fetchColumn();
+    }
+
     public function delete($id) {
         $query = "DELETE FROM book WHERE id_book = ?";
         return $this->qry($query, [$id]);
     }
 
-    public function updateStock($id) {
-        $query = "UPDATE books SET stock = stock - 1 WHERE id = ?";
-        return $this->qry($query, [$id]);
+    public function updateStock($stock, $id) {
+        $query = "UPDATE book SET stock = stock - ? WHERE id_book = ?";
+        return $this->qry($query, [$stock, $id]);
     }
 }

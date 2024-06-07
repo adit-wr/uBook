@@ -21,7 +21,11 @@ class HistoryModel extends Database {
         (username, book, quantity, price, image, inserted_at) 
         VALUES (?, ?, ?, ?, ?, NOW())";
         return $this->qry($query, [
-            $data
+            $data['username'],
+            $data['name'],
+            $data['newstock'],
+            $data['newstock'] * $data['price'],
+            $data['image']
         ]);
     }
 }

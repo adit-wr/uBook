@@ -283,14 +283,19 @@ class BookController extends BaseController{
             $file_extension = pathinfo($filename, PATHINFO_EXTENSION);
             $filename = $name . "." . $file_extension;
             $location = BASEDIR . '/public/img/book/' . $filename;
+            $cek = $this->bookModel->getByNamePublisher($name, $publisher);
+            if ($cek) {
+                Message::setFlash('error', 'Failed', $name . ' by ' . $publisher . ' already exists');
+                $this->redirect('librarian/bookinsert');
+            }
             if (move_uploaded_file($tempname, $location)) {
                 $proc = $this->bookModel->insert($name, $publisher, $stock, $price, $filename);
                 
                 if ($proc) {
-                    Message::setFlash('success', 'Successfully', $name . ' added');
+                    Message::setFlash('success', 'Successfully', $name . ' by ' . $publisher . ' added');
                     $this->redirect('librarian/book');
                 } else {
-                    Message::setFlash('error', 'Failed', $name . ' add failed');
+                    Message::setFlash('error', 'Failed', $name . ' by ' . $publisher . ' add failed');
                     $this->redirect('librarian/bookinsert');
                 }
             } else {
@@ -387,19 +392,19 @@ class BookController extends BaseController{
     }
 
     public function buybookproccess() {
-        // $inputs= [
-        //     $_POST['username'],
-        //     $_POST['name'],
-        //     $_POST['newstock'],
-        //     $_POST['price'],
-        //     $_POST['image']
-        // ];
-        $fields = [
-        ];
-
+        $fields = [];
         $message = [];
+
         [$inputs, $errors] = $this->filter($_POST, $fields, $message);
-        $this->historyModel->addToHistory($inputs);
-        
+        $getstock = $this->bookModel->getStock($inputs['id']);
+        if ($getstock < $inputs['newstock']) {
+            Message::setFlash('error', 'Failed', 'Out of stock');
+            $this->redirect('customer/buybook/' . $inputs['id']);
+        } else {
+            $this->bookModel->updateStock($inputs['newstock'], $inputs['id']);
+            $this->historyModel->addToHistory($inputs);
+            Message::setFlash('success', 'Success', $inputs['name'] . ' will be processed');
+            $this->redirect('customer/book');
+        }
     }
 }

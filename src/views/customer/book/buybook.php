@@ -25,10 +25,10 @@ Message::flash();
                             <form id="form" action="<?= BASEURL . '/customer/buybookproccess' ?>" method="post">
                                 <input type="hidden" name="id" value="<?= $book['id_book'] ?>">
                                 <input type="hidden" name="username" value="<?= $_SESSION['username'] ?>">
-                                <input type="hidden" name="book" value="<?= $book['name'] ?>">
+                                <input type="hidden" name="name" value="<?= $book['name'] ?>">
                                 <input type="hidden" name="price" value="<?= $book['price'] ?>">
-                                <input type="hidden" name="image" value="<?php echo $book['image'] ?>">
-                                <!-- <?php echo $book['image']; ?> -->
+                                <input type="hidden" name="stock" value="<?= $book['stock'] ?>">
+                                <input type="hidden" name="image" value="<?= $book['image'] ?>">
                                 <div class="cartstock">
                                     <input type="text" name="newstock" value="1">
                                 </div>
@@ -39,7 +39,7 @@ Message::flash();
                                 <input type="hidden" name="mode" id="mode" value="update">
                                 <div class="buttonbotcart">
                                     <button class="tbuy" type="button" onclick="location.href='<?= BASEURL . '/customer/book' ?>' ">Cancel</button>
-                                    <button class="tbuy" type="submit">Buy<span class="material-symbols-outlined">shopping_cart</span></button>
+                                    <button class="tbuy" name="cart" type="submit">Buy<span class="material-symbols-outlined">shopping_cart</span></button>
                                 </div>
                             </form>
                         </div>
