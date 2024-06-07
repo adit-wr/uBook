@@ -401,3 +401,90 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
 .tbuy:hover{
     background-color: #75583b;
 }
+
+.addstock{
+    width: 500px;
+    height: 600px;
+}
+
+.forminputadd{
+    display: flex;
+    background-color: #ddd;
+    padding: 5px;
+    gap: 20px;
+    border-radius: 10px;
+}
+
+.forminputadd input,
+.forminputadd textarea {
+    text-align: center;
+    padding: 10px 10px;
+    border: none;
+    background-color: #ddd;
+    outline: none;
+    width: 80px;
+}
+
+.forminputadd input[type=number]::-webkit-inner-spin-button,
+.forminputadd input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.quantity{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.btnplus{
+    border: none;
+    background-color: #bcffca;
+}
+.btnmin{
+    border: none;
+    background-color: #ffafaf;
+}
+.btnplus:hover{
+    background-color: #8effa7;
+}
+.btnmin:hover{
+    background-color: #fa9393;
+}
+.btnplus:active{
+    background-color: #6eff8d;
+}
+.btnmin:active{
+    background-color: #ff8181;
+}
+.imagebook{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+.imagebook img {
+    padding: 10px;
+    background-color: #eee;
+    box-shadow: 1px 1px 50px black;
+}
+.addbtn {
+    gap: 20px;
+}
+
+.addbtn input,
+.addbtn textarea {
+    text-align: center;
+    width: 40px;
+}
+
+.addbtn input[type=number]::-webkit-inner-spin-button,
+.addbtn input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

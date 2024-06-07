@@ -21,6 +21,7 @@ class Routes {
         $router->get('/admin/book', ['BookController', 'index']);
         $router->get('/admin/bookinsert', ['BookController', 'insert']);
         $router->get('/admin/bookedit', ['BookController', 'edit']);
+        $router->get('/admin/bookaddstock', ['BookController', 'addstock']);
         $router->get('/admin/customer', ['CustomerController', 'index']);
         $router->get('/admin/customerinsert', ['CustomerController', 'insert']);
         $router->get('/admin/customeredit', ['CustomerController', 'edit']);
@@ -34,6 +35,7 @@ class Routes {
         $router->post('/admin/customereditproccess', ['CustomerController','edit_account']);
         $router->post('/admin/bookinsertproccess', ['BookController','insert_book']);
         $router->post('/admin/bookeditproccess', ['BookController','edit_book']);
+        $router->post('/admin/bookstockproccess', ['BookController','add_stock']);
         
         // page actor librarian
         $router->get('/librarian', ['DashboardController','indexL']);
@@ -41,6 +43,7 @@ class Routes {
         $router->get('/librarian/book', ['BookController', 'indexL']);
         $router->get('/librarian/bookinsert', ['BookController', 'insertL']);
         $router->get('/librarian/bookedit', ['BookController', 'editL']);
+        $router->get('/librarian/bookaddstock', ['BookController', 'addstockL']);
         $router->get('/librarian/customer', ['CustomerController', 'indexL']);
         $router->get('/librarian/customerinsert', ['CustomerController', 'insertL']);
         $router->get('/librarian/customeredit', ['CustomerController', 'editL']);
@@ -49,6 +52,7 @@ class Routes {
         $router->post('/librarian/customereditproccess', ['CustomerController','edit_accountL']);
         $router->post('/librarian/bookinsertproccess', ['BookController','insert_bookL']);
         $router->post('/librarian/bookeditproccess', ['BookController','edit_bookL']);
+        $router->post('/librarian/bookstockproccess', ['BookController','add_stockL']);
         
         // page actor customer
         $router->get('/customer', ['DashboardController', 'indexC']);

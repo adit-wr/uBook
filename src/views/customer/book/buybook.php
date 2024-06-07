@@ -29,8 +29,11 @@ Message::flash();
                                 <input type="hidden" name="price" value="<?= $book['price'] ?>">
                                 <input type="hidden" name="stock" value="<?= $book['stock'] ?>">
                                 <input type="hidden" name="image" value="<?= $book['image'] ?>">
-                                <div class="cartstock">
-                                    <input type="text" name="newstock" value="1">
+                                <div class="cartstock addbtn">
+                                    <button class="quantity btnmin" onclick="decreaseValue()" type="button"><span class="material-symbols-outlined">remove</span></button>
+                                    <input type="number" id="newstock" name="newstock" placeholder="Enter stock" autocomplete="off" value="1">
+                                    <button class="quantity btnplus" onclick="increaseValue()" type="button"><span class="material-symbols-outlined">add</span></button>
+                                    <!-- <input type="text" name="newstock" value="1"> -->
                                 </div>
                                 <div class="pricee">
                                     <h3><?= $book['stock'] ?> left</h3>

@@ -407,4 +407,82 @@ class BookController extends BaseController{
             $this->redirect('customer/book');
         }
     }
+
+    public function addstock($id) {
+        if ($_SESSION['role'] == 'admin') {
+            $data = [
+                'style' => '/css/style3.css',
+                'title' => 'Book',
+                'book' => $this->bookModel->getById($id)
+            ];
+            $this->view('admin/template/header', $data);
+            $this->view('admin/book/addstock', $data);
+            $this->view('admin/template/footer');
+        } else {
+            Message::setFlash('error', 'Sorry', 'You are ' . $_SESSION['role'] . ' not have an access');
+            $data = [
+                'style' => '/css/style2.css',
+                'title' => 'Book',
+                'AllBook' => $this->bookModel->getAll()
+            ];
+            $this->view($_SESSION['role'] . '/template/header', $data);
+            $this->view($_SESSION['role'] . '/book/index', $data);
+            $this->view($_SESSION['role'] . '/template/footer');
+        }
+    }
+
+    public function add_stock() {
+        if (isset($_POST["addstock"])) {
+            $id = $_POST['id'];
+            $namebook = $_POST['name'];
+            $newstock = $_POST['newstock'];
+            if ($newstock == 0) {
+                Message::setFlash('error', 'Failed', 'Stock not found');
+                $this->redirect('admin/bookaddstock/' . $id);
+            } else {
+                $this->bookModel->addStock($newstock, $id);
+                Message::setFlash('success', 'Success', $namebook . ' stock added');
+                $this->redirect('admin/book');
+            }
+        }
+    }
+
+    public function addstockL($id) {
+        if ($_SESSION['role'] == 'librarian') {
+            $data = [
+                'style' => '/css/style3.css',
+                'title' => 'Book',
+                'book' => $this->bookModel->getById($id)
+            ];
+            $this->view('librarian/template/header', $data);
+            $this->view('librarian/book/addstock', $data);
+            $this->view('librarian/template/footer');
+        } else {
+            Message::setFlash('error', 'Sorry', 'You are ' . $_SESSION['role'] . ' not have an access');
+            $data = [
+                'style' => '/css/style2.css',
+                'title' => 'Book',
+                'AllBook' => $this->bookModel->getAll()
+            ];
+            $this->view($_SESSION['role'] . '/template/header', $data);
+            $this->view($_SESSION['role'] . '/book/index', $data);
+            $this->view($_SESSION['role'] . '/template/footer');
+        }
+    }
+
+    public function add_stockL() {
+        if (isset($_POST["addstock"])) {
+            $id = $_POST['id'];
+            $namebook = $_POST['name'];
+            $newstock = $_POST['newstock'];
+            if ($newstock == 0) {
+                Message::setFlash('error', 'Failed', 'Stock not found');
+                $this->redirect('librarian/bookaddstock/' . $id);
+            } else {
+                $this->bookModel->addStock($newstock, $id);
+                Message::setFlash('success', 'Success', $namebook . ' stock added');
+                $this->redirect('librarian/book');
+            }
+        }
+    }
 }

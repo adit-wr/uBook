@@ -21,3 +21,19 @@ function edit(mode) {
         })
     }
 }
+
+function increaseValue() {
+    var value = parseInt(document.getElementById('newstock').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('newstock').value = value;
+}
+
+function decreaseValue() {
+    var value = parseInt(document.getElementById('newstock').value, 10);
+    value = isNaN(value) ? 0 : value;
+    if (value > 1) {
+        value--;
+        document.getElementById('newstock').value = value;
+    }
+}

@@ -9,7 +9,6 @@ Message::flash();
                 </div>
                 <div class="mainbook">
                     <?php
-                        $no=1;
                         foreach($AllBook as $row):
                     ?>
                         <div class="showbook">
@@ -24,7 +23,10 @@ Message::flash();
                                         <h6><?= $row['stock'] ?></h6>
                                         <h5>Rp.<?= $row['price'] ?></h5>
                                     </div>
-                                    <button class="tbuy" onclick="location.href='<?= BASEURL . '/librarian/bookedit/' . $row['id_book'] ?>' ">Edit<span class="material-symbols-outlined">edit</span></button>
+                                    <div class="btnbuystok">
+                                        <button class="tbuy2" onclick="location.href='<?= BASEURL . '/librarian/bookedit/' . $row['id_book'] ?>' ">Edit</button>
+                                        <button class="tbuy2" onclick="location.href='<?= BASEURL . '/librarian/bookaddstock/' . $row['id_book'] ?>' ">Stock</button>
+                                    </div>
                                 </div>
                             </div>
                             </div>

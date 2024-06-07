@@ -69,4 +69,9 @@ class BookModel extends Database{
         $query = "UPDATE book SET stock = stock - ? WHERE id_book = ?";
         return $this->qry($query, [$stock, $id]);
     }
+
+    public function addStock($stock, $id) {
+        $query = "UPDATE book SET stock = stock + ? WHERE id_book = ?";
+        return $this->qry($query, [$stock, $id]);
+    }
 }

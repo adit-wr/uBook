@@ -11,6 +11,7 @@ body{
     /* background: linear-gradient(to left, #002204, #295721); */
     background: linear-gradient(to left, #6f5943, #b59c85);
 }
+
 .container{
     width: 80%;
     height: auto;
@@ -483,6 +484,25 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
 .tbuy:hover{
     background-color: #75583b;
 }
+.tbuy2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: none;
+    padding: 5px 30px;
+    background-color:#846a50;
+    color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 13px;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.tbuy2:hover{
+    background-color: #75583b;
+}
 
 .bottombook {
     display: flex;
@@ -490,4 +510,10 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
     align-items: center;
     width: 100%;
     margin-top: auto;
+}
+
+.btnbuystok{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
 }
