@@ -2,23 +2,26 @@
 
 class HistoryController extends BaseController {
     private $historyModel;
+    private $bookModel;
     public function __construct()
     {
         $this->historyModel = $this->model('HistoryModel');
+        $this->bookModel = $this->model('BookModel');
     }
 
     public function index() {
         $data = [
             'style' => '/css/style2.css',
             'title' => 'History',
-            'AllHistory' => $this->historyModel->getAll()
+            'AllHistory' => $this->historyModel->getAll(),
+            'History' => $this->historyModel->getById($_SESSION['username'])
         ];
         if ($_SESSION['role'] == 'admin') {
             $this->view('admin/template/header', $data);
             $this->view('admin/history/index', $data);
             $this->view('admin/template/footer');
         } else {
-            Message::setFlash('error', 'Sorry', 'You not have an access');
+            Message::setFlash('error', 'Sorry', 'You are ' . $_SESSION['role'] . ' not have an access');
             $this->view($_SESSION['role'] . '/template/header', $data);
             $this->view($_SESSION['role'] . '/history/index', $data);
             $this->view($_SESSION['role'] . '/template/footer');
@@ -29,14 +32,15 @@ class HistoryController extends BaseController {
         $data = [
             'style' => '/css/style2.css',
             'title' => 'History',
-            'AllHistory' => $this->historyModel->getAll()
+            'AllHistory' => $this->historyModel->getAll(),
+            'History' => $this->historyModel->getById($_SESSION['username']),
         ];
         if ($_SESSION['role'] == 'librarian') {
             $this->view('librarian/template/header', $data);
             $this->view('librarian/history/index', $data);
             $this->view('librarian/template/footer');
         } else {
-            Message::setFlash('error', 'Sorry', 'You not have an access');
+            Message::setFlash('error', 'Sorry', 'You are ' . $_SESSION['role'] . ' not have an access');
             $this->view($_SESSION['role'] . '/template/header', $data);
             $this->view($_SESSION['role'] . '/history/index', $data);
             $this->view($_SESSION['role'] . '/template/footer');
@@ -48,6 +52,7 @@ class HistoryController extends BaseController {
             $data = [
                 'style' => '/css/style2.css',
                 'title' => 'History',
+                'AllHistory' => $this->historyModel->getAll(),
                 'History' => $this->historyModel->getById($_SESSION['username'])
             ];
             $this->view('customer/template/header', $data);
@@ -59,7 +64,7 @@ class HistoryController extends BaseController {
                 'title' => 'History',
                 'AllHistory' => $this->historyModel->getAll()
             ];
-            Message::setFlash('error', 'Sorry', 'You not have an access');
+            Message::setFlash('error', 'Sorry', 'You are ' . $_SESSION['role'] . ' not have an access');
             $this->view($_SESSION['role'] . '/template/header', $data);
             $this->view($_SESSION['role'] . '/history/index', $data);
             $this->view($_SESSION['role'] . '/template/footer');

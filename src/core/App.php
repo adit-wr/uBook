@@ -1,7 +1,7 @@
 <?php
 
 class App {
-    private $controllerFile = 'DefaultApp';
+    private $controllerFile = 'AuthController';
     private $controllerMethod = 'index';
     private $parameter=[];
     private const DEFAULT_GET = 'GET';

@@ -18,7 +18,7 @@ class CustomerController extends BaseController{
             $this->view('admin/customer/index', $data);
             $this->view('admin/template/footer');
         } else {
-            Message::setFlash('error', 'Sorry', 'You not have an access');
+            Message::setFlash('error', 'Sorry', 'You are ' . $_SESSION['role'] . ' not have an access');
             $data = [
                 'style' => '/css/style2.css',
                 'title' => 'Dashboard'
@@ -40,7 +40,7 @@ class CustomerController extends BaseController{
             $this->view('librarian/customer/index', $data);
             $this->view('librarian/template/footer');
         } else {
-            Message::setFlash('error', 'Sorry', 'You not have an access');
+            Message::setFlash('error', 'Sorry', 'You are ' . $_SESSION['role'] . ' not have an access');
             $data = [
                 'style' => '/css/style2.css',
                 'title' => 'Dashboard'
@@ -61,7 +61,7 @@ class CustomerController extends BaseController{
             $this->view('admin/customer/insert');
             $this->view('admin/template/footer');
         } else {
-            Message::setFlash('error', 'Sorry', 'You not have an access');
+            Message::setFlash('error', 'Sorry', 'You are ' . $_SESSION['role'] . ' not have an access');
             $data = [
                 'style' => '/css/style2.css',
                 'title' => 'Dashboard'
@@ -139,9 +139,9 @@ class CustomerController extends BaseController{
     public function insert_account() {
         $fields = [
             'name' => 'string | required',
-            'username' => 'string | required | alphanumeric',
-            'password' => 'string | required',
-            'phone' => 'int | required '
+            'username' => 'string | required | alphanumeric | min:5',
+            'password' => 'string | required | min:8',
+            'phone' => 'int | required | min:10'
         ];
 
         $message = [];
@@ -168,9 +168,9 @@ class CustomerController extends BaseController{
     public function insert_accountL() {
         $fields = [
             'name' => 'string | required',
-            'username' => 'string | required | alphanumeric',
-            'password' => 'string | required',
-            'phone' => 'int | required '
+            'username' => 'string | required | alphanumeric | min:5',
+            'password' => 'string | required | min:8',
+            'phone' => 'int | required | min:10'
         ];
 
         $message = [];
@@ -197,9 +197,9 @@ class CustomerController extends BaseController{
     public function edit_account() {
         $fields = [
             'name' => 'string | required',
-            'username' => 'string | required | alphanumeric',
-            'password' => 'string | required',
-            'phone' => 'int | required',
+            'username' => 'string | required | alphanumeric | min:5',
+            'password' => 'string | required | min:8',
+            'phone' => 'int | required | min:10',
             'mode' => 'string',
             'id' => 'int'
         ];
@@ -241,9 +241,9 @@ class CustomerController extends BaseController{
     public function edit_accountL() {
         $fields = [
             'name' => 'string | required',
-            'username' => 'string | required | alphanumeric',
-            'password' => 'string | required',
-            'phone' => 'int | required',
+            'username' => 'string | required | alphanumeric | min:5',
+            'password' => 'string | required | min:8',
+            'phone' => 'int | required | min:10',
             'mode' => 'string',
             'id' => 'int'
         ];

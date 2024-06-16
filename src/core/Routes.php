@@ -53,6 +53,8 @@ class Routes {
         $router->post('/librarian/bookinsertproccess', ['BookController','insert_bookL']);
         $router->post('/librarian/bookeditproccess', ['BookController','edit_bookL']);
         $router->post('/librarian/bookstockproccess', ['BookController','add_stockL']);
+        $router->post('/librarian/buybookproccessed', ['BookController', 'buybookproccessed']);
+        $router->post('/librarian/buybookproccesscancel', ['BookController', 'buybookproccesscancel']);
         
         // page actor customer
         $router->get('/customer', ['DashboardController', 'indexC']);

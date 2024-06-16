@@ -75,9 +75,9 @@ class LibrarianController extends BaseController{
     public function insert_account() {
         $fields = [
             'name' => 'string | required',
-            'username' => 'string | required | alphanumeric',
-            'password' => 'string | required',
-            'phone' => 'int | required '
+            'username' => 'string | required | alphanumeric | min:5',
+            'password' => 'string | required | min:8',
+            'phone' => 'int | required | min:10 '
         ];
 
         $message = [];
@@ -104,9 +104,9 @@ class LibrarianController extends BaseController{
     public function edit_account() {
         $fields = [
             'name' => 'string | required',
-            'username' => 'string | required | alphanumeric',
-            'password' => 'string | required',
-            'phone' => 'int | required',
+            'username' => 'string | required | alphanumeric | min:5',
+            'password' => 'string | required | min:8',
+            'phone' => 'int | required | min:10',
             'mode' => 'string',
             'id' => 'int'
         ];

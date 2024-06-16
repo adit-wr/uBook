@@ -10,7 +10,7 @@ class AuthController extends BaseController{
     public function index() {
         $data = [
             'style' => '/css/style.css',
-            'title' => 'E-Library'
+            'title' => 'Welcome'
         ];
         $this->view('sign/template/header', $data);
         $this->view('sign/landingpage/index', $data);
@@ -40,9 +40,9 @@ class AuthController extends BaseController{
     public function register() {
         $fields = [
             'name' => 'string | required',
-            'username' => 'string | required | alphanumeric',
-            'password' => 'string | required',
-            'phone' => 'int | required '
+            'username' => 'string | required | alphanumeric | min:5',
+            'password' => 'string | required | min:8',
+            'phone' => 'int | required | min:10'
         ];
 
         $message = [];
@@ -87,7 +87,7 @@ class AuthController extends BaseController{
             
             if ($user) {
                 if (password_verify($password, $user['password'])) {
-                    $_SESSION['id'] = $user['id'];
+                    $_SESSION['id'] = $user['id_account'];
                     $_SESSION['name'] = $user['name'];
                     $_SESSION['username'] = $user['username'];
                     $_SESSION['role'] = $user['role'];

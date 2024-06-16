@@ -396,7 +396,9 @@ tr:nth-child(even) {
 div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
     background-color: #846a50;
 }
-
+div:where(.swal2-container) button:where(.swal2-styled).swal2-deny {
+    background-color: #846a50;
+}
 .namesidebar{
     text-align: start;
 }
@@ -517,4 +519,54 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
     display: flex;
     flex-direction: row;
     gap: 5px;
+}
+
+.trbtn{
+    display: flex;
+    width: 65px;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.btnacc{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    background-color: #137d00;
+    cursor: pointer;
+}
+.btnacc:hover{
+    background-color: #42733a;
+}
+.btnacc:active{
+    background-color: #3a6733;
+}
+.btncancel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    background-color: #cb0000;
+    cursor: pointer;
+}
+.btncancel:hover{
+    background-color: #bd0000;
+}
+.btncancel:active{
+    background-color: #af0101;
+}
+.swal2-shown > [aria-hidden='true'] {
+    transition: 0.1s filter;
+    filter: blur(3px);
 }

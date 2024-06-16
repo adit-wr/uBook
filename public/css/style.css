@@ -113,7 +113,9 @@ form h1{
 div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
     background-color: #846a50;
 }
-
+div:where(.swal2-container) button:where(.swal2-styled).swal2-deny {
+    background-color: #846a50;
+}
 .containerlp{
     display: flex;
     align-items: center;
@@ -155,4 +157,8 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
 .lpimg{
     width: 80%;
     height: auto;
+}
+.swal2-shown > [aria-hidden='true'] {
+    transition: 0.1s filter;
+    filter: blur(3px);
 }

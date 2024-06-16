@@ -401,11 +401,41 @@ class BookController extends BaseController{
             Message::setFlash('error', 'Failed', 'Out of stock');
             $this->redirect('customer/buybook/' . $inputs['id']);
         } else {
-            $this->bookModel->updateStock($inputs['newstock'], $inputs['id']);
             $this->historyModel->addToHistory($inputs);
-            Message::setFlash('success', 'Success', $inputs['name'] . ' will be processed');
-            $this->redirect('customer/book');
+            $total = $inputs['newstock'] * $inputs['price'];
+            $pesan = "Hello, im " . $_SESSION['username'] . ", booking " . $inputs['name'] . " quantity " . $inputs['newstock'] . ", Total payment : Rp." . $total;
+            $nowa = "";
+            $url = "https://wa.me/" . $nowa . "/?text=" . $pesan;
+            header("Location: " . $url);
+            exit;
         }
+    }
+
+    public function buybookproccessed() {
+        $fields = [];
+        $message = [];
+
+        [$inputs, $errors] = $this->filter($_POST, $fields, $message);
+        $getstock = $this->bookModel->getStockName($inputs['book']);
+        if ($getstock < $inputs['newstock']) {
+            $this->historyModel->failed($inputs['id_hst']);
+            Message::setFlash('error', 'Failed', 'Out of stock');
+            $this->redirect($_SESSION['role'] . '/history');
+        } else {
+            $this->historyModel->success($inputs['id_hst']);
+            $this->bookModel->updateStock($inputs['newstock'], $inputs['book']);
+            Message::setFlash('success', 'Success', 'Proccess success, status will be done');
+            $this->redirect($_SESSION['role'] . '/history');
+        }
+    }
+    public function buybookproccesscancel() {
+        $fields = [];
+        $message = [];
+
+        [$inputs, $errors] = $this->filter($_POST, $fields, $message);
+        $this->historyModel->failed($inputs['id_hst']);
+        Message::setFlash('error', 'Cancel', 'Proccess canceled, status will be expired');
+        $this->redirect($_SESSION['role'] . '/history');
     }
 
     public function addstock($id) {
